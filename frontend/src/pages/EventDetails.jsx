@@ -93,7 +93,7 @@ export default function EventDetails() {
         </div>
       </div>
 
-      <div style={{ backgroundColor: '#ffffff', color: '#000000', padding: '4rem 0', minHeight: '400px' }}>
+      <div style={{ backgroundColor: 'var(--bg-color)', color: 'var(--text-primary)', padding: '4rem 0', minHeight: '400px' }}>
         <div className="container">
           <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem' }}>Cast & Crew</h2>
           <div style={{ display: 'flex', gap: '3rem', overflowX: 'auto', paddingBottom: '1rem' }}>
@@ -103,12 +103,13 @@ export default function EventDetails() {
                   width: '100px', 
                   height: '100px', 
                   borderRadius: '50%', 
-                  backgroundColor: '#f3f4f6', 
+                  backgroundColor: 'var(--bg-secondary)', 
+                  border: '1px solid var(--border-color)',
                   marginBottom: '1rem',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#9ca3af',
+                  color: 'var(--text-secondary)',
                   overflow: 'hidden'
                 }}>
                   {artist.imageUrl ? (
@@ -118,13 +119,13 @@ export default function EventDetails() {
                   )}
                 </div>
                 <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>{artist.name}</div>
-                <div style={{ fontSize: '0.8rem', color: '#6b7280' }}>{artist.role}</div>
+                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>{artist.role}</div>
               </div>
             ))}
           </div>
 
           <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', margin: '4rem 0 2rem 0' }}>About the Venue</h2>
-          <p style={{ color: '#4b5563', fontSize: '1.1rem' }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
             {event.venue.name} - {event.venue.location}
           </p>
         </div>
