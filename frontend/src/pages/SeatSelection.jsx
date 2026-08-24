@@ -189,10 +189,17 @@ export default function SeatSelection() {
               {selectedSeats.map(s => `${s.seat.row}${s.seat.number}`).join(', ')}
             </p>
             <div className="price-breakdown">
-              {selectedSeats.map(s => (
-                <div key={s.id} className="price-row">
-                  <span>{s.seat.category.name}</span>
-                  <span>₹{s.price}</span>
+              {Object.values(
+                selectedSeats.reduce((acc, s) => {
+                  const key = `${s.seat.category.name}-${s.price}`;
+                  if (!acc[key]) acc[key] = { name: s.seat.category.name, price: s.price, count: 0 };
+                  acc[key].count++;
+                  return acc;
+                }, {})
+              ).map(group => (
+                <div key={`${group.name}-${group.price}`} className="price-row">
+                  <span>{group.name}</span>
+                  <span>{group.count} * ₹{group.price}</span>
                 </div>
               ))}
             </div>
