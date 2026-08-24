@@ -158,6 +158,11 @@ public class DatabaseSeeder implements CommandLineRunner {
             "https://upload.wikimedia.org/wikipedia/en/0/04/Gladiator_II_%282024%29_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(30));
 
+        Event bigLebowski = createEvent("The Big Lebowski", "MOVIE", 
+            "The Dude abides.",
+            "https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg",
+            imax, organiser, LocalDate.now().plusDays(15));
+
         // More Concerts & Events
         Event taylorSwift = createEvent("Taylor Swift - The Eras Tour", "CONCERT", 
             "A journey through the musical eras of Taylor Swift.",

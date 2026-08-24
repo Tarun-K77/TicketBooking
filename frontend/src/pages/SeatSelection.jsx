@@ -43,7 +43,10 @@ export default function SeatSelection() {
     }
   };
 
+  const [errorMsg, setErrorMsg] = useState("");
+
   const handleContinue = async () => {
+    setErrorMsg("");
     try {
       const auth = JSON.parse(localStorage.getItem('auth'));
       if (!auth) {
@@ -59,7 +62,7 @@ export default function SeatSelection() {
       }
       navigate('/checkout', { state: { selectedSeats, eventId: id, holdIds } });
     } catch (e) {
-      alert("Failed to hold seats. Some seats might have been booked.");
+      setErrorMsg("Failed to hold seats. Some seats might have been booked.");
     }
   };
 
@@ -124,7 +127,8 @@ export default function SeatSelection() {
               <span>Total</span>
               <span>₹{totalAmount}</span>
             </div>
-            <button className="btn btn-primary w-100" onClick={handleContinue}>Continue</button>
+            {errorMsg && <div style={{ color: '#ff4d4f', marginTop: '10px', fontSize: '14px', textAlign: 'center', backgroundColor: 'rgba(255, 77, 79, 0.1)', padding: '10px', borderRadius: '4px' }}>{errorMsg}</div>}
+            <button className="btn btn-primary w-100" onClick={handleContinue} style={{ marginTop: '10px' }}>Continue</button>
           </div>
         )}
       </div>

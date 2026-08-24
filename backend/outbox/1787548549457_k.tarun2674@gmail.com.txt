@@ -1,0 +1,7 @@
+To: k.tarun2674@gmail.com
+Subject: Booking Confirmed - Inception: IMAX Re-release
+
+Your booking is confirmed!
+Reference: F6E5278E
+We have attached your QR ticket data (Base64 for now):
+iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6AQAAAACgl2eQAAAAzklEQVR4Xu3Q0Q0DMQgDUDaH0bpZGtukUU9qFzC+UxLgfRHrf17x7DwyQBmgDFAGKF6ggsmKXJWnMgQsClOAUxmCwprux8oZLK3KHezzVo7gnt+VGQgmS19XfuCTUvvGC2A1ubSmhZ9LswRZgU4TNDhxA2gF2Hmw7wYg9nrwSDwXFI0XwEy9wq6uNwMnGPSk4wWwJO0JALsi9QOseNJKOoLdz93EdSCJJ2C3JDl3BSB9cGAHmglGb8kPBLNH+NXS5QV+Z4AyQBmgDFAGKK83+WP7hD3kYAYAAAAASUVORK5CYII=
