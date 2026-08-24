@@ -12,11 +12,11 @@ export default function SeatSelection() {
   
   useEffect(() => {
     // 1. Fetch seats from backend
-    axios.get(`http://localhost:8080/api/events/public/${id}/seats`).then(res => setSeats(res.data));
+    axios.get(`https://ticketbooking-ycov.onrender.com/api/events/public/${id}/seats`).then(res => setSeats(res.data));
 
     // 2. Connect WebSocket
     const stompClient = new Client({
-      brokerURL: 'ws://localhost:8080/ws',
+      brokerURL: 'wss://ticketbooking-ycov.onrender.com/ws',
       onConnect: () => {
         stompClient.subscribe(`/topic/events/${id}/seats`, (message) => {
           const update = JSON.parse(message.body);
@@ -57,7 +57,7 @@ export default function SeatSelection() {
       
       const holdIds = [];
       for (const s of selectedSeats) {
-        const res = await axios.post('http://localhost:8080/api/holds', { eventSeatId: s.id }, config);
+        const res = await axios.post('https://ticketbooking-ycov.onrender.com/api/holds', { eventSeatId: s.id }, config);
         holdIds.push(res.data.id);
       }
       navigate('/checkout', { state: { selectedSeats, eventId: id, holdIds } });

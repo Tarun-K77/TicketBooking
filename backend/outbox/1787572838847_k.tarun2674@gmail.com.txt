@@ -1,0 +1,7 @@
+To: k.tarun2674@gmail.com
+Subject: Booking Confirmed - Interstellar
+
+Your booking is confirmed!
+Reference: D0C74D63
+We have attached your QR ticket data (Base64 for now):
+iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6AQAAAACgl2eQAAAAy0lEQVR4Xu3QwRXCMAwD0Gxuj9bNTCQ1CZQHC8hqSXH0Tx71P9d43jzSQGmgNFAaKF4gBxM5ojLWZAg4JFqANRmCxJrOw8kZlFblDuZ5Jkdwzs/JDAwmUs89+YGd1PWJF8BqorSmwsul+QFe4uLuA4KFF1iLgsD/VduBgJkdCI+AtgNSXBCrlPUEMmjfbrwAd8RSv69FuQBO80Qjqd4OzPvAJTcVmn0BntqvNeAHBws7sBmhSkOAQtVckq708QK/00BpoDRQGigNlOsFXxkrY+z7U3UAAAAASUVORK5CYII=

@@ -8,7 +8,7 @@ export default function EventDetails() {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/events/public/${id}`)
+    axios.get(`https://ticketbooking-ycov.onrender.com/api/events/public/${id}`)
       .then(res => setEvent(res.data))
       .catch(err => console.error("Failed to load event details", err));
   }, [id]);

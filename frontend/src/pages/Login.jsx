@@ -10,7 +10,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:8080/api/auth/login', { email, password });
+      const res = await axios.post('https://ticketbooking-ycov.onrender.com/api/auth/login', { email, password });
       localStorage.setItem('auth', JSON.stringify(res.data));
       window.dispatchEvent(new Event('storage'));
       navigate('/');

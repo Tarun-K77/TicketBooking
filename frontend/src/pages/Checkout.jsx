@@ -13,7 +13,7 @@ export default function Checkout() {
     if (selectedSeats.length === 0) navigate('/');
     
     if (eventId) {
-      axios.get(`http://localhost:8080/api/events/public/${eventId}`)
+      axios.get(`https://ticketbooking-ycov.onrender.com/api/events/public/${eventId}`)
         .then(res => setEvent(res.data))
         .catch(err => console.error("Failed to load event for checkout", err));
     }
@@ -55,7 +55,7 @@ export default function Checkout() {
       }
       const config = { headers: { Authorization: `Bearer ${auth.token}` } };
       
-      await axios.post('http://localhost:8080/api/bookings', {
+      await axios.post('https://ticketbooking-ycov.onrender.com/api/bookings', {
         eventId: eventId,
         holdIds: location.state?.holdIds || []
       }, config);

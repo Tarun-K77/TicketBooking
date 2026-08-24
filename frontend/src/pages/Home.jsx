@@ -9,7 +9,7 @@ export default function Home() {
   const categoryFilter = searchParams.get('category');
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/events/public')
+    axios.get('https://ticketbooking-ycov.onrender.com/api/events/public')
       .then(res => setEvents(res.data))
       .catch(err => console.error("Failed to load events", err));
   }, []);

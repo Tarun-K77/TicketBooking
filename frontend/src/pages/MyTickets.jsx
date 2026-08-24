@@ -16,7 +16,7 @@ export default function MyTickets() {
     }
     const config = { headers: { Authorization: `Bearer ${auth.token}` } };
     
-    axios.get('http://localhost:8080/api/bookings', config)
+    axios.get('https://ticketbooking-ycov.onrender.com/api/bookings', config)
       .then(res => {
         if (Array.isArray(res.data)) {
           setTickets(res.data);
@@ -39,7 +39,7 @@ export default function MyTickets() {
     const auth = JSON.parse(localStorage.getItem('auth'));
     const config = { headers: { Authorization: `Bearer ${auth.token}` } };
     
-    axios.get(`http://localhost:8080/api/bookings/${bookingId}/qr`, config)
+    axios.get(`https://ticketbooking-ycov.onrender.com/api/bookings/${bookingId}/qr`, config)
       .then(res => {
         setQrCodeData(prev => ({ ...prev, [bookingId]: res.data }));
       })

@@ -11,7 +11,7 @@ export default function Register() {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8080/api/auth/register', { name, email, password, role: 'CUSTOMER' });
+      await axios.post('https://ticketbooking-ycov.onrender.com/api/auth/register', { name, email, password, role: 'CUSTOMER' });
       alert("Registration successful! Please login.");
       navigate('/login');
     } catch (err) {
