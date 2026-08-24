@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
 
 @Service
 public class EmailService {
     @Autowired
     private JavaMailSender emailSender;
+
+    @Value("${spring.mail.username:noreply@showpass.com}")
+    private String fromEmail;
 
     public void sendBookingConfirmation(String to, String eventName, String bookingRef, String qrBase64) {
         String subject = "Booking Confirmed - " + eventName;
@@ -25,7 +29,7 @@ public class EmailService {
     private void sendRealEmail(String to, String subject, String content) {
         try {
             SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("noreply@showpass.com"); // Usually overridden by SMTP server
+            message.setFrom(fromEmail);
             message.setTo(to);
             message.setSubject(subject);
             message.setText(content);
