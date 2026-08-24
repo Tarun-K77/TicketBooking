@@ -109,27 +109,27 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         Event inception = createEvent("Inception: IMAX Re-release", "MOVIE", 
             "Experience Christopher Nolan's masterpiece in IMAX.",
-            "/images/ai_action.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(5));
 
         Event interstellar = createEvent("Interstellar", "MOVIE", 
             "A journey beyond the stars.",
-            "/images/ai_scifi.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(7));
 
         Event avatar = createEvent("Avatar: The Way of Water", "MOVIE", 
             "Return to Pandora.",
-            "/images/ai_scifi.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/5/54/Avatar_The_Way_of_Water_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(10));
 
         Event darkKnight = createEvent("The Dark Knight", "MOVIE", 
             "The night is darkest just before the dawn.",
-            "/images/ai_action.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/1/1c/The_Dark_Knight_%282008_film%29.jpg",
             imax, organiser, LocalDate.now().plusDays(12));
 
         Event dune = createEvent("Dune: Part Two", "MOVIE", 
             "Long live the fighters.",
-            "/images/ai_scifi.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
             imax, organiser, LocalDate.now().plusDays(14));
 
         Event comedy = createEvent("Stand-up Comedy Special", "EVENT", 
@@ -140,32 +140,32 @@ public class DatabaseSeeder implements CommandLineRunner {
         // More Movies
         Event oppenheimer = createEvent("Oppenheimer", "MOVIE", 
             "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
-            "/images/ai_drama.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg",
             imax, organiser, LocalDate.now().plusDays(20));
 
         Event spiderMan = createEvent("Spider-Man: Across the Spider-Verse", "MOVIE", 
             "Miles Morales catapults across the Multiverse.",
-            "/images/ai_action.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/b/b4/Spider-Man-_Across_the_Spider-Verse_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(21));
 
         Event johnWick = createEvent("John Wick: Chapter 4", "MOVIE", 
             "John Wick uncovers a path to defeating The High Table.",
-            "/images/ai_action.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/d/d0/John_Wick_-_Chapter_4_promotional_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(22));
 
         Event matrix = createEvent("The Matrix Resurrections", "MOVIE", 
             "Return to a world of two realities.",
-            "/images/ai_scifi.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/5/50/The_Matrix_Resurrections.jpg",
             imax, organiser, LocalDate.now().plusDays(25));
 
         Event gladiator = createEvent("Gladiator 2", "MOVIE", 
             "The continuing story of Lucius, the son of Lucilla.",
-            "/images/ai_action.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/0/04/Gladiator_II_%282024%29_poster.jpg",
             imax, organiser, LocalDate.now().plusDays(30));
 
         Event bigLebowski = createEvent("The Big Lebowski", "MOVIE", 
             "The Dude abides.",
-            "/images/ai_drama.jpg",
+            "https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg",
             imax, organiser, LocalDate.now().plusDays(15));
 
         // More Concerts & Events
