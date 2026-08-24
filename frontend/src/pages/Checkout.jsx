@@ -52,9 +52,23 @@ export default function Checkout() {
 
   const handlePaymentSubmit = (e) => {
     e.preventDefault();
-    if (paymentMethod === 'CARD' && (!cardNumber || !expiry || !cvv || !cardName)) {
-      setError("Please fill in all credit card details.");
-      return;
+    if (paymentMethod === 'CARD') {
+      if (!cardNumber || !expiry || !cvv || !cardName) {
+        setError("Please fill in all credit card details.");
+        return;
+      }
+      if (cardNumber.replace(/\s/g, '').length !== 16) {
+        setError("Invalid Card Number. Must be exactly 16 digits.");
+        return;
+      }
+      if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+        setError("Invalid Expiry Date. Format must be MM/YY.");
+        return;
+      }
+      if (cvv.length < 3) {
+        setError("Invalid CVV. Must be 3 or 4 digits.");
+        return;
+      }
     }
     if (paymentMethod === 'UPI') {
       if (!upiId) {
