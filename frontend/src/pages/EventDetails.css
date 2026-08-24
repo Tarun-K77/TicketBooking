@@ -1,0 +1,53 @@
+
+.event-details-page {
+  position: relative;
+}
+
+.event-cover {
+  height: 60vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.event-details-content {
+  position: relative;
+  margin-top: -100px;
+  padding-bottom: 4rem;
+}
+
+.event-title {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.event-meta-large {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.event-description {
+  max-width: 800px;
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 4rem;
+}
+
+.booking-action {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: var(--bg-secondary);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  max-width: fit-content;
+}
+
+.price-hint {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}

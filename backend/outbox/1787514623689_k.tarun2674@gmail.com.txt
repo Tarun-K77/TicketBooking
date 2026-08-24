@@ -1,0 +1,7 @@
+To: k.tarun2674@gmail.com
+Subject: Booking Confirmed - Dune: Part Two
+
+Your booking is confirmed!
+Reference: BE96EB50
+We have attached your QR ticket data (Base64 for now):
+iVBORw0KGgoAAAANSUhEUgAAAPoAAAD6AQAAAACgl2eQAAAAvElEQVR4Xu3Q0Q2EMAwD0GzejMZmXGyngJC4BRwfurbx+0qc/3PEe/LKAGWAMkAZoHiBDGadie96+QE+qmpyz9xALafrx8sWiAyom6AteLL9MgTBsCTjyw/cyS52vABXwwWtuve+PAEn3eALRwChtKhTwgskmkDBMXtPgAVhxpuEIdgpwwj7gS44x8ZUGgJO+E/rC/JaUbE+jAF/NOptAa5tLMFmmosbgmAWTjWq3cB3BigDlAHKAGWAcvwA49Cb5BvGZAgAAAAASUVORK5CYII=

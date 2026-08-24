@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #0F172A; color: #E2E8F0; margin: 0; padding: 40px; }
+        .container { max-width: 600px; margin: 0 auto; background: #1E293B; border-radius: 16px; padding: 40px; border: 1px solid #334155; }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #3B82F6; font-size: 28px; margin: 0; }
+        .header p { color: #94A3B8; margin-top: 8px; }
+        .ticket-card { background: #0F172A; border-radius: 12px; padding: 24px; margin: 20px 0; border: 1px solid #334155; }
+        .ticket-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #1E293B; }
+        .ticket-label { color: #94A3B8; font-size: 14px; }
+        .ticket-value { color: #F1F5F9; font-weight: 600; }
+        .qr-section { text-align: center; margin: 30px 0; }
+        .qr-section img { border-radius: 8px; border: 2px solid #3B82F6; }
+        .qr-section p { color: #94A3B8; font-size: 12px; margin-top: 8px; }
+        .footer { text-align: center; color: #64748B; font-size: 12px; margin-top: 30px; }
+        .badge { display: inline-block; background: #10B981; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>🎫 Booking Confirmed!</h1>
+        <p>Your tickets are ready</p>
+    </div>
+
+    <div class="ticket-card">
+        <div class="ticket-row">
+            <span class="ticket-label">Booking Reference</span>
+            <span class="ticket-value" th:text="${bookingRef}">BK-XXXXX</span>
+        </div>
+        <div class="ticket-row">
+            <span class="ticket-label">Event</span>
+            <span class="ticket-value" th:text="${eventTitle}">Event Name</span>
+        </div>
+        <div class="ticket-row">
+            <span class="ticket-label">Date &amp; Time</span>
+            <span class="ticket-value" th:text="${eventDateTime}">2026-01-01 19:00</span>
+        </div>
+        <div class="ticket-row">
+            <span class="ticket-label">Venue</span>
+            <span class="ticket-value" th:text="${venueName}">Venue Name</span>
+        </div>
+        <div class="ticket-row">
+            <span class="ticket-label">Seats</span>
+            <span class="ticket-value" th:text="${seatsList}">A1, A2</span>
+        </div>
+        <div class="ticket-row">
+            <span class="ticket-label">Total Amount</span>
+            <span class="ticket-value" th:text="'₹' + ${totalAmount}">₹500.00</span>
+        </div>
+        <div class="ticket-row">
+            <span class="ticket-label">Status</span>
+            <span class="badge">CONFIRMED</span>
+        </div>
+    </div>
+
+    <div class="qr-section">
+        <img th:src="'cid:qrcode'" alt="QR Code Ticket" width="200" height="200" />
+        <p>Scan this QR code at the venue entrance</p>
+    </div>
+
+    <div class="footer">
+        <p>Thank you for your booking! Please keep this email for your records.</p>
+        <p>&copy; 2026 Ticket Booking System</p>
+    </div>
+</div>
+</body>
+</html>
