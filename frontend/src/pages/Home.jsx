@@ -9,6 +9,8 @@ export default function Home() {
   const [searchParams] = useSearchParams();
   const categoryFilter = searchParams.get('category');
 
+  const searchQuery = searchParams.get('search');
+
   useEffect(() => {
     axios.get('https://ticketbooking-ycov.onrender.com/api/events/public')
       .then(res => {
@@ -24,6 +26,9 @@ export default function Home() {
   let displayEvents = events;
   if (categoryFilter) {
     displayEvents = events.filter(e => e.type === categoryFilter);
+  }
+  if (searchQuery) {
+    displayEvents = displayEvents.filter(e => e.name.toLowerCase().includes(searchQuery.toLowerCase()));
   }
 
   const movies = displayEvents.filter(e => e.type === 'MOVIE');

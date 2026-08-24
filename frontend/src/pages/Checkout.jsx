@@ -61,9 +61,9 @@ export default function Checkout() {
         setError("Please enter a valid UPI ID.");
         return;
       }
-      const upiRegex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
+      const upiRegex = /^[0-9]{10}@[a-zA-Z]{3,}$/;
       if (!upiRegex.test(upiId)) {
-        setError("Invalid UPI ID format. Should be like username@bank");
+        setError("Invalid UPI ID format. Must be a 10-digit mobile number (e.g. 9876543210@ybl)");
         return;
       }
     }

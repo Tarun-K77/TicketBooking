@@ -31,6 +31,7 @@ export default function Navbar() {
           {auth ? (
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
               <Link to="/bookings" className="nav-link">My Tickets</Link>
+              <Link to="/profile" className="nav-link">My Profile</Link>
               <button onClick={handleLogout} className="btn" style={{ background: 'transparent', color: 'white', border: '1px solid white' }}>Logout</button>
             </div>
           ) : (
@@ -41,11 +42,15 @@ export default function Navbar() {
           )}
         </nav>
 
-        <div className="nav-links">
-          <button className="nav-link" style={{display: 'flex', alignItems: 'center', gap: '8px'}}>
-            <Search size={18} /> Search
-          </button>
-        </div>
+        <form className="nav-links" onSubmit={(e) => {
+          e.preventDefault();
+          const query = e.target.search.value;
+          if (query) navigate(`/?search=${encodeURIComponent(query)}`);
+          else navigate('/');
+        }} style={{ display: 'flex', alignItems: 'center', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '20px', padding: '0.2rem 1rem' }}>
+          <Search size={18} style={{ color: 'var(--text-secondary)' }} />
+          <input name="search" type="text" placeholder="Search events..." style={{ background: 'transparent', border: 'none', color: 'white', padding: '0.5rem', outline: 'none', width: '150px' }} />
+        </form>
       </div>
     </header>
   );
