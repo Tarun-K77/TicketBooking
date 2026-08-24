@@ -104,109 +104,109 @@ public class DatabaseSeeder implements CommandLineRunner {
         // Events
         Event coldplay = createEvent("Coldplay - Music of the Spheres", "CONCERT", 
             "Join Coldplay for their spectacular Music of the Spheres World Tour.",
-            "/images/concert.jpg",
+            "/images/ai_concert_rock.jpg",
             stadium, organiser, LocalDate.now().plusDays(30));
 
         Event inception = createEvent("Inception: IMAX Re-release", "MOVIE", 
             "Experience Christopher Nolan's masterpiece in IMAX.",
-            "https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg",
+            "/images/ai_action.jpg",
             imax, organiser, LocalDate.now().plusDays(5));
 
         Event interstellar = createEvent("Interstellar", "MOVIE", 
             "A journey beyond the stars.",
-            "https://upload.wikimedia.org/wikipedia/en/b/bc/Interstellar_film_poster.jpg",
+            "/images/ai_scifi.jpg",
             imax, organiser, LocalDate.now().plusDays(7));
 
         Event avatar = createEvent("Avatar: The Way of Water", "MOVIE", 
             "Return to Pandora.",
-            "https://upload.wikimedia.org/wikipedia/en/5/54/Avatar_The_Way_of_Water_poster.jpg",
+            "/images/ai_scifi.jpg",
             imax, organiser, LocalDate.now().plusDays(10));
 
         Event darkKnight = createEvent("The Dark Knight", "MOVIE", 
             "The night is darkest just before the dawn.",
-            "https://image.tmdb.org/t/p/w500/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+            "/images/ai_action.jpg",
             imax, organiser, LocalDate.now().plusDays(12));
 
         Event dune = createEvent("Dune: Part Two", "MOVIE", 
             "Long live the fighters.",
-            "https://upload.wikimedia.org/wikipedia/en/5/52/Dune_Part_Two_poster.jpeg",
+            "/images/ai_scifi.jpg",
             imax, organiser, LocalDate.now().plusDays(14));
 
         Event comedy = createEvent("Stand-up Comedy Special", "EVENT", 
             "A night of endless laughter.",
-            "/images/event.jpg",
+            "/images/ai_comedy.jpg",
             stadium, organiser, LocalDate.now().plusDays(15));
 
         // More Movies
         Event oppenheimer = createEvent("Oppenheimer", "MOVIE", 
             "The story of American scientist J. Robert Oppenheimer and his role in the development of the atomic bomb.",
-            "https://upload.wikimedia.org/wikipedia/en/4/4a/Oppenheimer_%28film%29.jpg",
+            "/images/ai_drama.jpg",
             imax, organiser, LocalDate.now().plusDays(20));
 
         Event spiderMan = createEvent("Spider-Man: Across the Spider-Verse", "MOVIE", 
             "Miles Morales catapults across the Multiverse.",
-            "https://upload.wikimedia.org/wikipedia/en/b/b4/Spider-Man-_Across_the_Spider-Verse_poster.jpg",
+            "/images/ai_action.jpg",
             imax, organiser, LocalDate.now().plusDays(21));
 
         Event johnWick = createEvent("John Wick: Chapter 4", "MOVIE", 
             "John Wick uncovers a path to defeating The High Table.",
-            "https://upload.wikimedia.org/wikipedia/en/d/d0/John_Wick_-_Chapter_4_promotional_poster.jpg",
+            "/images/ai_action.jpg",
             imax, organiser, LocalDate.now().plusDays(22));
 
         Event matrix = createEvent("The Matrix Resurrections", "MOVIE", 
             "Return to a world of two realities.",
-            "https://upload.wikimedia.org/wikipedia/en/5/50/The_Matrix_Resurrections.jpg",
+            "/images/ai_scifi.jpg",
             imax, organiser, LocalDate.now().plusDays(25));
 
         Event gladiator = createEvent("Gladiator 2", "MOVIE", 
             "The continuing story of Lucius, the son of Lucilla.",
-            "https://upload.wikimedia.org/wikipedia/en/0/04/Gladiator_II_%282024%29_poster.jpg",
+            "/images/ai_action.jpg",
             imax, organiser, LocalDate.now().plusDays(30));
 
         Event bigLebowski = createEvent("The Big Lebowski", "MOVIE", 
             "The Dude abides.",
-            "https://upload.wikimedia.org/wikipedia/en/3/35/Biglebowskiposter.jpg",
+            "/images/ai_drama.jpg",
             imax, organiser, LocalDate.now().plusDays(15));
 
         // More Concerts & Events
         Event taylorSwift = createEvent("Taylor Swift - The Eras Tour", "CONCERT", 
             "A journey through the musical eras of Taylor Swift.",
-            "/images/concert.jpg",
+            "/images/ai_concert_pop.jpg",
             stadium, organiser, LocalDate.now().plusDays(40));
 
         Event edSheeran = createEvent("Ed Sheeran - Mathematics Tour", "CONCERT", 
             "Experience Ed Sheeran live in concert.",
-            "/images/concert.jpg",
+            "/images/ai_concert_pop.jpg",
             stadium, organiser, LocalDate.now().plusDays(45));
 
         Event foodFest = createEvent("International Food Festival", "EVENT", 
             "Taste culinary masterpieces from around the globe.",
-            "/images/festival.jpg",
+            "/images/ai_comedy.jpg",
             stadium, organiser, LocalDate.now().plusDays(10));
 
         Event techConf = createEvent("Tech Innovators Summit 2026", "EVENT", 
             "The biggest technology conference of the year.",
-            "/images/tech.jpg",
+            "/images/ai_tech.jpg",
             stadium, organiser, LocalDate.now().plusDays(18));
 
         Event artExhibition = createEvent("Modern Art Exhibition", "EVENT", 
             "Explore contemporary art from emerging artists.",
-            "/images/event.jpg",
+            "/images/ai_comedy.jpg",
             stadium, organiser, LocalDate.now().plusDays(25));
 
         Event hackathon = createEvent("Global Hackathon 2026", "EVENT", 
             "Join developers worldwide to build the future.",
-            "/images/tech.jpg",
+            "/images/ai_tech.jpg",
             stadium, organiser, LocalDate.now().plusDays(35));
 
         Event weekendFlea = createEvent("Weekend Flea Market", "EVENT", 
             "Discover vintage clothing, handmade crafts, and more.",
-            "/images/festival.jpg",
+            "/images/ai_comedy.jpg",
             stadium, organiser, LocalDate.now().plusDays(4));
             
         Event magicShow = createEvent("Grand Magic Illusion Show", "EVENT", 
             "A mind-bending evening of magic and illusions.",
-            "/images/event.jpg",
+            "/images/ai_comedy.jpg",
             stadium, organiser, LocalDate.now().plusDays(28));
 
         // Create EventSeats
