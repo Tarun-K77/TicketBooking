@@ -41,6 +41,21 @@ export default function Checkout() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState('');
+  
+  const [showPayment, setShowPayment] = useState(false);
+  const [cardName, setCardName] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiry, setExpiry] = useState('');
+  const [cvv, setCvv] = useState('');
+
+  const handlePaymentSubmit = (e) => {
+    e.preventDefault();
+    if (!cardNumber || !expiry || !cvv || !cardName) {
+      setError("Please fill in all payment details.");
+      return;
+    }
+    confirmBooking();
+  };
 
   const confirmBooking = async () => {
     if (isProcessing) return;
@@ -100,9 +115,41 @@ export default function Checkout() {
           </div>
         )}
 
-        <button className="btn btn-primary w-100" style={{ width: '100%', opacity: isProcessing ? 0.7 : 1 }} onClick={confirmBooking} disabled={isProcessing}>
-          {isProcessing ? 'Confirming...' : 'Confirm Booking'}
-        </button>
+        {!showPayment ? (
+          <button className="btn btn-primary w-100" style={{ width: '100%' }} onClick={() => setShowPayment(true)}>
+            Proceed to Payment
+          </button>
+        ) : (
+          <div style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '1.5rem', borderRadius: '12px', border: '1px solid var(--border-color)', marginTop: '1.5rem' }}>
+            <h4 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+              Payment Details
+            </h4>
+            <form onSubmit={handlePaymentSubmit}>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Name on Card</label>
+                <input type="text" value={cardName} onChange={e => setCardName(e.target.value)} required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'transparent', color: 'white' }} placeholder="John Doe" />
+              </div>
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Card Number</label>
+                <input type="text" value={cardNumber} onChange={e => setCardNumber(e.target.value.replace(/\D/g, '').replace(/(\d{4})(?=\d)/g, '$1 '))} maxLength="19" required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'transparent', color: 'white' }} placeholder="0000 0000 0000 0000" />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>Expiry</label>
+                  <input type="text" value={expiry} onChange={e => setExpiry(e.target.value.replace(/[^0-9/]/g, '').replace(/^(\d{2})(\d)/g, '$1/$2'))} maxLength="5" required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'transparent', color: 'white' }} placeholder="MM/YY" />
+                </div>
+                <div style={{ flex: 1 }}>
+                  <label style={{ display: 'block', marginBottom: '0.5rem', color: 'var(--text-secondary)' }}>CVV</label>
+                  <input type="password" value={cvv} onChange={e => setCvv(e.target.value.replace(/\D/g, ''))} maxLength="4" required style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'transparent', color: 'white' }} placeholder="123" />
+                </div>
+              </div>
+              <button type="submit" className="btn btn-primary w-100" style={{ width: '100%', opacity: isProcessing ? 0.7 : 1 }} disabled={isProcessing}>
+                {isProcessing ? 'Processing Payment...' : `Pay ₹${totalAmount}`}
+              </button>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

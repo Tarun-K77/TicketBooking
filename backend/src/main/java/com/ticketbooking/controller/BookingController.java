@@ -15,6 +15,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -73,7 +74,18 @@ public class BookingController {
         if (!booking.getCustomer().getId().equals(userDetails.getId())) {
             return ResponseEntity.status(403).body("Unauthorized");
         }
-        String qrBase64 = qrCodeService.generateQrCodeBase64(booking.getBookingReference(), 250, 250);
+        String seatsStr = booking.getSeats().stream()
+                .map(s -> s.getEventSeat().getSeat().getRow() + s.getEventSeat().getSeat().getNumber())
+                .collect(Collectors.joining(", "));
+        
+        String qrPayload = String.format("Event: %s\nTime: %s\nSeats: %s\nStatus: %s\nRef: %s",
+                booking.getEvent().getName(),
+                booking.getEvent().getStartTime().toString(),
+                seatsStr,
+                booking.getStatus().toString(),
+                booking.getBookingReference()
+        );
+        String qrBase64 = qrCodeService.generateQrCodeBase64(qrPayload, 250, 250);
         return ResponseEntity.ok(qrBase64);
     }
 }
