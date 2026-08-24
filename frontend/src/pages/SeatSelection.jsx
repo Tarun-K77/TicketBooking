@@ -62,6 +62,11 @@ export default function SeatSelection() {
       }
       navigate('/checkout', { state: { selectedSeats, eventId: id, holdIds } });
     } catch (e) {
+      if (e.response && (e.response.status === 401 || e.response.status === 403 || e.response.data === "No value present")) {
+        localStorage.removeItem('auth');
+        navigate('/login');
+        return;
+      }
       setErrorMsg("Failed to hold seats. Some seats might have been booked.");
     }
   };
