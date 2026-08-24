@@ -255,3 +255,30 @@
   border-color: rgba(192, 192, 192, 0.6);
   box-shadow: 0 0 15px rgba(192, 192, 192, 0.2);
 }
+
+@media (max-width: 768px) {
+  .seat-selection-page {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+  .booking-summary-sidebar {
+    width: 100%;
+    position: static;
+  }
+  .seats {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .seat {
+    width: 24px;
+    height: 24px;
+  }
+  .concert-bay {
+    padding: 2.5rem 1rem 1rem 1rem;
+  }
+  .screen-indicator, .stage-indicator {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+  }
+}

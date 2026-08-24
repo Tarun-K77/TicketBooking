@@ -84,3 +84,35 @@
   color: var(--text-secondary);
   font-size: 0.875rem;
 }
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem !important;
+  }
+  .hero-content img {
+    width: 180px !important;
+    height: 270px !important;
+  }
+  .hero-meta {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .events-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .event-image {
+    height: 240px;
+  }
+  .event-info {
+    padding: 1rem;
+  }
+  .event-info h3 {
+    font-size: 1rem;
+  }
+}

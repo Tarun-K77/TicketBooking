@@ -52,3 +52,24 @@
   font-weight: 600;
   color: var(--text-secondary);
 }
+
+@media (max-width: 768px) {
+  .event-title {
+    font-size: 2.5rem;
+  }
+  .event-meta-large {
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+  .booking-action {
+    flex-direction: column;
+    width: 100%;
+    max-width: 100%;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  .event-details-content {
+    margin-top: -50px;
+  }
+}
