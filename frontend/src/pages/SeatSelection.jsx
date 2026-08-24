@@ -9,8 +9,12 @@ export default function SeatSelection() {
   const navigate = useNavigate();
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [event, setEvent] = useState(null);
   
   useEffect(() => {
+    // 0. Fetch event details
+    axios.get(`https://ticketbooking-ycov.onrender.com/api/events/public/${id}`).then(res => setEvent(res.data));
+
     // 1. Fetch seats from backend
     axios.get(`https://ticketbooking-ycov.onrender.com/api/events/public/${id}/seats`).then(res => setSeats(res.data));
 
@@ -73,15 +77,16 @@ export default function SeatSelection() {
 
   const totalAmount = selectedSeats.reduce((sum, s) => sum + s.price, 0);
 
-  // Group seats by row
-  const rows = {};
-  seats.forEach(s => {
-    if (!rows[s.seat.row]) rows[s.seat.row] = [];
-    rows[s.seat.row].push(s);
-  });
+  const isConcert = event && (event.type === 'CONCERT' || event.type === 'EVENT');
 
-  return (
-    <div className="seat-selection-page container">
+  const renderMovieLayout = () => {
+    const rows = {};
+    seats.forEach(s => {
+      if (!rows[s.seat.row]) rows[s.seat.row] = [];
+      rows[s.seat.row].push(s);
+    });
+
+    return (
       <div className="seat-map-container">
         <div className="screen-indicator">SCREEN</div>
         
@@ -110,6 +115,69 @@ export default function SeatSelection() {
           <div className="legend-item"><span className="seat seat-booked"></span> Booked</div>
         </div>
       </div>
+    );
+  };
+
+  const renderConcertLayout = () => {
+    const bays = { Platinum: [], Gold: [], Silver: [] };
+    
+    seats.forEach(s => {
+      const cat = s.seat.category.name;
+      if (bays[cat]) bays[cat].push(s);
+    });
+
+    return (
+      <div className="seat-map-container concert-map-container">
+        <div className="stage-indicator">STAGE</div>
+        
+        <div className="concert-bays">
+          {Object.keys(bays).map(bayName => {
+            if (bays[bayName].length === 0) return null;
+            
+            const bayRows = {};
+            bays[bayName].forEach(s => {
+              if (!bayRows[s.seat.row]) bayRows[s.seat.row] = [];
+              bayRows[s.seat.row].push(s);
+            });
+
+            return (
+              <div key={bayName} className={`concert-bay bay-${bayName.toLowerCase()}`}>
+                <h4 className="bay-title">{bayName} Zone</h4>
+                <div className="seat-grid">
+                  {Object.keys(bayRows).sort().map(row => (
+                    <div key={row} className="seat-row">
+                      <span className="row-label">{row}</span>
+                      <div className="seats">
+                        {bayRows[row].sort((a,b) => a.seat.number - b.seat.number).map(seat => (
+                          <button 
+                            key={seat.id}
+                            className={`seat seat-${seat.status.toLowerCase()}`}
+                            onClick={() => toggleSeat(seat)}
+                            disabled={seat.status === 'BOOKED' || seat.status === 'HELD'}
+                          ></button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="seat-legend">
+          <div className="legend-item"><span className="seat seat-available"></span> Available</div>
+          <div className="legend-item"><span className="seat seat-selected"></span> Selected</div>
+          <div className="legend-item"><span className="seat seat-held"></span> Held</div>
+          <div className="legend-item"><span className="seat seat-booked"></span> Booked</div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="seat-selection-page container">
+      {isConcert ? renderConcertLayout() : renderMovieLayout()}
 
       <div className="booking-summary-sidebar">
         <h3>Selected Seats</h3>

@@ -71,15 +71,20 @@ public class DatabaseSeeder implements CommandLineRunner {
         imax = venueRepository.save(imax);
 
         // Categories
-        SeatCategory premiumStadium = new SeatCategory();
-        premiumStadium.setName("Premium");
-        premiumStadium.setVenue(stadium);
-        premiumStadium = seatCategoryRepository.save(premiumStadium);
+        SeatCategory platinumStadium = new SeatCategory();
+        platinumStadium.setName("Platinum");
+        platinumStadium.setVenue(stadium);
+        platinumStadium = seatCategoryRepository.save(platinumStadium);
 
-        SeatCategory standardStadium = new SeatCategory();
-        standardStadium.setName("Standard");
-        standardStadium.setVenue(stadium);
-        standardStadium = seatCategoryRepository.save(standardStadium);
+        SeatCategory goldStadium = new SeatCategory();
+        goldStadium.setName("Gold");
+        goldStadium.setVenue(stadium);
+        goldStadium = seatCategoryRepository.save(goldStadium);
+
+        SeatCategory silverStadium = new SeatCategory();
+        silverStadium.setName("Silver");
+        silverStadium.setVenue(stadium);
+        silverStadium = seatCategoryRepository.save(silverStadium);
 
         SeatCategory premiumImax = new SeatCategory();
         premiumImax.setName("Premium");
@@ -92,7 +97,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         standardImax = seatCategoryRepository.save(standardImax);
 
         // Seats for Stadium
-        createSeats(stadium, premiumStadium, standardStadium);
+        createConcertSeats(stadium, platinumStadium, goldStadium, silverStadium);
         // Seats for IMAX
         createSeats(imax, premiumImax, standardImax);
 
@@ -205,26 +210,26 @@ public class DatabaseSeeder implements CommandLineRunner {
             stadium, organiser, LocalDate.now().plusDays(28));
 
         // Create EventSeats
-        createEventSeats(coldplay, 500.0, 250.0);
+        createConcertEventSeats(coldplay, 1500.0, 1000.0, 500.0);
         createEventSeats(inception, 300.0, 150.0);
         createEventSeats(interstellar, 300.0, 150.0);
         createEventSeats(avatar, 350.0, 200.0);
         createEventSeats(darkKnight, 300.0, 150.0);
         createEventSeats(dune, 350.0, 200.0);
-        createEventSeats(comedy, 200.0, 100.0);
+        createConcertEventSeats(comedy, 600.0, 400.0, 200.0);
         createEventSeats(oppenheimer, 350.0, 200.0);
         createEventSeats(spiderMan, 300.0, 150.0);
         createEventSeats(johnWick, 300.0, 150.0);
         createEventSeats(matrix, 300.0, 150.0);
         createEventSeats(gladiator, 350.0, 200.0);
-        createEventSeats(taylorSwift, 600.0, 300.0);
-        createEventSeats(edSheeran, 450.0, 250.0);
-        createEventSeats(foodFest, 100.0, 50.0);
-        createEventSeats(techConf, 1000.0, 500.0);
-        createEventSeats(artExhibition, 150.0, 80.0);
-        createEventSeats(hackathon, 50.0, 20.0);
-        createEventSeats(weekendFlea, 50.0, 20.0);
-        createEventSeats(magicShow, 250.0, 120.0);
+        createConcertEventSeats(taylorSwift, 1800.0, 1200.0, 600.0);
+        createConcertEventSeats(edSheeran, 1500.0, 1000.0, 500.0);
+        createConcertEventSeats(foodFest, 300.0, 200.0, 100.0);
+        createConcertEventSeats(techConf, 1500.0, 1000.0, 500.0);
+        createConcertEventSeats(artExhibition, 450.0, 300.0, 150.0);
+        createConcertEventSeats(hackathon, 150.0, 100.0, 50.0);
+        createConcertEventSeats(weekendFlea, 150.0, 100.0, 50.0);
+        createConcertEventSeats(magicShow, 750.0, 500.0, 250.0);
     }
 
     private void createSeats(Venue venue, SeatCategory premium, SeatCategory standard) {
@@ -240,6 +245,27 @@ public class DatabaseSeeder implements CommandLineRunner {
                     seat.setCategory(premium);
                 } else {
                     seat.setCategory(standard);
+                }
+                seatRepository.save(seat);
+            }
+        }
+    }
+
+    private void createConcertSeats(Venue venue, SeatCategory platinum, SeatCategory gold, SeatCategory silver) {
+        String[] rows = {"A", "B", "C", "D", "E", "F"};
+        for (String row : rows) {
+            for (int i = 1; i <= 10; i++) {
+                Seat seat = new Seat();
+                seat.setVenue(venue);
+                seat.setRow(row);
+                seat.setNumber(String.valueOf(i));
+                seat.setActive(true);
+                if (row.equals("A") || row.equals("B")) {
+                    seat.setCategory(platinum);
+                } else if (row.equals("C") || row.equals("D")) {
+                    seat.setCategory(gold);
+                } else {
+                    seat.setCategory(silver);
                 }
                 seatRepository.save(seat);
             }
@@ -271,6 +297,24 @@ public class DatabaseSeeder implements CommandLineRunner {
                 es.setPrice(premiumPrice);
             } else {
                 es.setPrice(standardPrice);
+            }
+            eventSeatRepository.save(es);
+        }
+    }
+    private void createConcertEventSeats(Event event, double platinumPrice, double goldPrice, double silverPrice) {
+        List<Seat> seats = seatRepository.findByVenueId(event.getVenue().getId());
+        for (Seat seat : seats) {
+            EventSeat es = new EventSeat();
+            es.setEvent(event);
+            es.setSeat(seat);
+            es.setStatus("AVAILABLE");
+            String cat = seat.getCategory().getName();
+            if (cat.equals("Platinum")) {
+                es.setPrice(platinumPrice);
+            } else if (cat.equals("Gold")) {
+                es.setPrice(goldPrice);
+            } else {
+                es.setPrice(silverPrice);
             }
             eventSeatRepository.save(es);
         }
