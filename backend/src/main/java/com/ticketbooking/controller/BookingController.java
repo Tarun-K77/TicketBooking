@@ -78,9 +78,8 @@ public class BookingController {
                 .map(s -> s.getEventSeat().getSeat().getRow() + s.getEventSeat().getSeat().getNumber())
                 .collect(Collectors.joining(", "));
         
-        String qrPayload = String.format("Event: %s\nTime: %s\nSeats: %s\nStatus: %s\nRef: %s",
+        String qrPayload = String.format("Event: %s | Seats: %s | Status: %s | Ref: %s",
                 booking.getEvent().getName(),
-                booking.getEvent().getStartTime().toString(),
                 seatsStr,
                 booking.getStatus().toString(),
                 booking.getBookingReference()
