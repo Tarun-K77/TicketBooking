@@ -78,11 +78,15 @@ public class BookingController {
                 .map(s -> s.getEventSeat().getSeat().getRow() + s.getEventSeat().getSeat().getNumber())
                 .collect(Collectors.joining(", "));
         
-        String qrPayload = String.format("Event: %s | Seats: %s | Status: %s | Ref: %s",
-                booking.getEvent().getName(),
-                seatsStr,
-                booking.getStatus().toString(),
-                booking.getBookingReference()
+        String eventName = java.net.URLEncoder.encode(booking.getEvent().getName(), java.nio.charset.StandardCharsets.UTF_8);
+        String timeStr = java.net.URLEncoder.encode(booking.getEvent().getStartTime().toString(), java.nio.charset.StandardCharsets.UTF_8);
+        String seatsEncoded = java.net.URLEncoder.encode(seatsStr, java.nio.charset.StandardCharsets.UTF_8);
+        
+        String qrPayload = String.format("https://ticket-booking-iota-six.vercel.app/ticket?ref=%s&event=%s&time=%s&seats=%s",
+                booking.getBookingReference(),
+                eventName,
+                timeStr,
+                seatsEncoded
         );
         String qrBase64 = qrCodeService.generateQrCodeBase64(qrPayload, 250, 250);
         return ResponseEntity.ok(qrBase64);

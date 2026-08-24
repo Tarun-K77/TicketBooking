@@ -7,6 +7,7 @@ import Checkout from './pages/Checkout';
 import MyTickets from './pages/MyTickets';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import DigitalTicket from './pages/DigitalTicket';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/events/:id/seats" element={<SeatSelection />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/bookings" element={<MyTickets />} />
+            <Route path="/ticket" element={<DigitalTicket />} />
           </Routes>
         </main>
       </div>
