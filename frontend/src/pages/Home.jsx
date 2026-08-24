@@ -48,16 +48,25 @@ export default function Home() {
       )}
 
       {!loading && featured && (
-        <div className="hero-section" style={{ backgroundImage: `linear-gradient(to right, var(--bg-color) 10%, transparent 60%, var(--bg-color)), linear-gradient(to bottom, transparent 50%, var(--bg-color)), url(${featured.coverImageUrl})` }}>
-          <div className="container hero-content">
-            <span className="badge">Featured</span>
-            <h1 className="hero-title">{featured.name}</h1>
-            <p className="hero-desc">{featured.description}</p>
-            <div className="hero-meta">
-              <span>{featured.date}</span>
-              <span>{featured.venue.name}</span>
+        <div className="hero-section" style={{ position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${featured.coverImageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center', filter: 'blur(20px)', transform: 'scale(1.1)', zIndex: 0, opacity: 0.5 }}></div>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--bg-color) 0%, transparent 100%), linear-gradient(to top, var(--bg-color) 0%, transparent 100%)', zIndex: 0 }}></div>
+          
+          <div className="container hero-content" style={{ position: 'relative', zIndex: 1, display: 'flex', gap: '4rem', alignItems: 'flex-end', width: '100%' }}>
+            
+            <img src={featured.coverImageUrl} alt={featured.name} style={{ width: '250px', height: '375px', objectFit: 'cover', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.8)', flexShrink: 0 }} />
+            
+            <div style={{ paddingBottom: '2rem' }}>
+              <span className="badge">Featured</span>
+              <h1 className="hero-title">{featured.name}</h1>
+              <p className="hero-desc">{featured.description}</p>
+              <div className="hero-meta">
+                <span>{featured.date}</span>
+                <span>{featured.venue.name}</span>
+              </div>
+              <Link to={`/events/${featured.id}`} className="btn btn-primary" style={{ marginTop: '1.5rem', padding: '0.8rem 2rem' }}>Book Now</Link>
             </div>
-            <Link to={`/events/${featured.id}`} className="btn btn-primary" style={{ marginTop: '1.5rem', padding: '0.8rem 2rem' }}>Book Now</Link>
+
           </div>
         </div>
       )}
