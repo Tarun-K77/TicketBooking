@@ -8,14 +8,19 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+
   const handleRegister = async (e) => {
     e.preventDefault();
+    setErrorMsg('');
+    setSuccessMsg('');
     try {
       await axios.post('https://ticketbooking-ycov.onrender.com/api/auth/register', { name, email, password, role: 'CUSTOMER' });
-      alert("Registration successful! Please login.");
-      navigate('/login');
+      setSuccessMsg("Registration successful! Redirecting to login...");
+      setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
-      alert("Registration failed! Email might be in use.");
+      setErrorMsg("Registration failed! Email might be in use.");
     }
   };
 
@@ -35,6 +40,8 @@ export default function Register() {
           <label className="form-label">Password</label>
           <input type="password" value={password} onChange={e => setPassword(e.target.value)} className="form-input" required />
         </div>
+        {errorMsg && <div style={{ color: '#ff4d4f', marginBottom: '15px', textAlign: 'center', backgroundColor: 'rgba(255, 77, 79, 0.1)', padding: '10px', borderRadius: '4px' }}>{errorMsg}</div>}
+        {successMsg && <div style={{ color: '#52c41a', marginBottom: '15px', textAlign: 'center', backgroundColor: 'rgba(82, 196, 26, 0.1)', padding: '10px', borderRadius: '4px' }}>{successMsg}</div>}
         <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>Sign Up</button>
       </form>
     </div>
