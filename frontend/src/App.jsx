@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DigitalTicket from './pages/DigitalTicket';
 import Profile from './pages/Profile';
+import BookingSuccess from './pages/BookingSuccess';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/events/:id" element={<EventDetails />} />
             <Route path="/events/:id/seats" element={<SeatSelection />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/success" element={<BookingSuccess />} />
             <Route path="/bookings" element={<MyTickets />} />
             <Route path="/ticket" element={<DigitalTicket />} />
             <Route path="/profile" element={<Profile />} />

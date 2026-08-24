@@ -100,9 +100,11 @@ export default function Checkout() {
       await axios.post('https://ticketbooking-ycov.onrender.com/api/bookings', {
         eventId: eventId,
         holdIds: location.state?.holdIds || []
-      }, config);
+      }, config)
+      .then(res => {
+        navigate('/success', { state: { booking: res.data } });
+      });
       
-      navigate('/bookings', { state: { showSuccess: true } });
     } catch (e) {
       setError('Booking failed. Your holds may have expired or the database is busy. Please try again.');
       setIsProcessing(false);
