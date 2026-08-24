@@ -1,6 +1,7 @@
 
 .event-details-page {
   position: relative;
+  overflow: hidden;
 }
 
 .event-cover {
