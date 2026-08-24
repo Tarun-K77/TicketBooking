@@ -39,7 +39,7 @@ export default function MyTickets() {
     const auth = JSON.parse(localStorage.getItem('auth'));
     const config = { headers: { Authorization: `Bearer ${auth.token}` } };
     
-    axios.get(`https://ticketbooking-ycov.onrender.com/api/bookings/${bookingId}/qr`, config)
+    axios.get(`https://ticketbooking-ycov.onrender.com/api/bookings/${bookingId}/qr?t=${new Date().getTime()}`, config)
       .then(res => {
         setQrCodeData(prev => ({ ...prev, [bookingId]: res.data }));
       })
