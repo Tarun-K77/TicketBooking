@@ -117,12 +117,58 @@ export default function Home() {
         </section>
       )}
 
-      {/* Events Section */}
-      {otherEvents.length > 0 && (
+      {/* Stand-up & Entertainment */}
+      {otherEvents.filter(e => e.name.toLowerCase().includes('comedy') || e.name.toLowerCase().includes('magic')).length > 0 && (
         <section className="container discovery-section">
-          <h2 className="section-title">Other Events</h2>
+          <h2 className="section-title">Stand-up & Entertainment</h2>
           <div className="events-grid">
-            {otherEvents.map(event => (
+            {otherEvents.filter(e => e.name.toLowerCase().includes('comedy') || e.name.toLowerCase().includes('magic')).map(event => (
+              <Link to={`/events/${event.id}`} key={event.id} className="event-card">
+                <div className="event-image">
+                  <img src={event.coverImageUrl} alt={event.name} />
+                </div>
+                <div className="event-info">
+                  <h3>{event.name}</h3>
+                  <div className="event-meta">
+                    <span>{event.date}</span>
+                    <span>{event.venue.name}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Tech & Summits */}
+      {otherEvents.filter(e => e.name.toLowerCase().includes('tech') || e.name.toLowerCase().includes('hackathon')).length > 0 && (
+        <section className="container discovery-section">
+          <h2 className="section-title">Tech & Summits</h2>
+          <div className="events-grid">
+            {otherEvents.filter(e => e.name.toLowerCase().includes('tech') || e.name.toLowerCase().includes('hackathon')).map(event => (
+              <Link to={`/events/${event.id}`} key={event.id} className="event-card">
+                <div className="event-image">
+                  <img src={event.coverImageUrl} alt={event.name} />
+                </div>
+                <div className="event-info">
+                  <h3>{event.name}</h3>
+                  <div className="event-meta">
+                    <span>{event.date}</span>
+                    <span>{event.venue.name}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Festivals & Exhibitions */}
+      {otherEvents.filter(e => e.name.toLowerCase().includes('festival') || e.name.toLowerCase().includes('flea') || e.name.toLowerCase().includes('art')).length > 0 && (
+        <section className="container discovery-section">
+          <h2 className="section-title">Festivals & Exhibitions</h2>
+          <div className="events-grid">
+            {otherEvents.filter(e => e.name.toLowerCase().includes('festival') || e.name.toLowerCase().includes('flea') || e.name.toLowerCase().includes('art')).map(event => (
               <Link to={`/events/${event.id}`} key={event.id} className="event-card">
                 <div className="event-image">
                   <img src={event.coverImageUrl} alt={event.name} />

@@ -30,7 +30,6 @@ export default function Navbar() {
           <Link to="/?category=CONCERT" className="nav-link">Concerts</Link>
           {auth ? (
             <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <Link to="/bookings" className="nav-link">My Tickets</Link>
               <Link to="/profile" className="nav-link">My Profile</Link>
               <button onClick={handleLogout} className="btn" style={{ background: 'transparent', color: 'white', border: '1px solid white' }}>Logout</button>
             </div>

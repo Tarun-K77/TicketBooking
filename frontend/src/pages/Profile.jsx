@@ -46,17 +46,28 @@ export default function Profile() {
           </div>
         </div>
 
-        <button 
-          onClick={() => {
-            localStorage.removeItem('auth');
-            window.dispatchEvent(new Event('storage'));
-            navigate('/');
-          }} 
-          className="btn" 
-          style={{ width: '100%', marginTop: '1rem', border: '1px solid #ff4d4f', color: '#ff4d4f', backgroundColor: 'transparent' }}
-        >
-          Logout
-        </button>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
+          <button 
+            onClick={() => navigate('/bookings')}
+            className="btn btn-primary"
+            style={{ width: '100%', padding: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+          >
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            View My Tickets
+          </button>
+
+          <button 
+            onClick={() => {
+              localStorage.removeItem('auth');
+              window.dispatchEvent(new Event('storage'));
+              navigate('/');
+            }} 
+            className="btn" 
+            style={{ width: '100%', border: '1px solid #ff4d4f', color: '#ff4d4f', backgroundColor: 'transparent' }}
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );
