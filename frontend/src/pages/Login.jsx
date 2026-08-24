@@ -11,6 +11,13 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setErrorMsg('');
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
     try {
       const res = await axios.post('https://ticketbooking-ycov.onrender.com/api/auth/login', { email, password });
       localStorage.setItem('auth', JSON.stringify(res.data));

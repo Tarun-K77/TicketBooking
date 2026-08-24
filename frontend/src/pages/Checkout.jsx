@@ -56,9 +56,16 @@ export default function Checkout() {
       setError("Please fill in all credit card details.");
       return;
     }
-    if (paymentMethod === 'UPI' && !upiId) {
-      setError("Please enter a valid UPI ID.");
-      return;
+    if (paymentMethod === 'UPI') {
+      if (!upiId) {
+        setError("Please enter a valid UPI ID.");
+        return;
+      }
+      const upiRegex = /^[a-zA-Z0-9.\-_]{2,256}@[a-zA-Z]{2,64}$/;
+      if (!upiRegex.test(upiId)) {
+        setError("Invalid UPI ID format. Should be like username@bank");
+        return;
+      }
     }
     confirmBooking();
   };

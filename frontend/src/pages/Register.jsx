@@ -15,6 +15,13 @@ export default function Register() {
     e.preventDefault();
     setErrorMsg('');
     setSuccessMsg('');
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
     try {
       await axios.post('https://ticketbooking-ycov.onrender.com/api/auth/register', { name, email, password, role: 'CUSTOMER' });
       setSuccessMsg("Registration successful! Redirecting to login...");
