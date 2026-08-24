@@ -224,12 +224,15 @@ public class DatabaseSeeder implements CommandLineRunner {
         createEventSeats(gladiator, 350.0, 200.0);
         createConcertEventSeats(taylorSwift, 1800.0, 1200.0, 600.0);
         createConcertEventSeats(edSheeran, 1500.0, 1000.0, 500.0);
-        createConcertEventSeats(foodFest, 300.0, 200.0, 100.0);
-        createConcertEventSeats(techConf, 1500.0, 1000.0, 500.0);
-        createConcertEventSeats(artExhibition, 450.0, 300.0, 150.0);
-        createConcertEventSeats(hackathon, 150.0, 100.0, 50.0);
-        createConcertEventSeats(weekendFlea, 150.0, 100.0, 50.0);
-        createConcertEventSeats(magicShow, 750.0, 500.0, 250.0);
+        createConcertEventSeats(foodFest, 300.0, 150.0, 50.0);
+        createConcertEventSeats(techConf, 1000.0, 500.0, 200.0);
+        createConcertEventSeats(artExhibition, 500.0, 250.0, 100.0);
+        createConcertEventSeats(hackathon, 200.0, 100.0, 50.0);
+        createConcertEventSeats(weekendFlea, 100.0, 50.0, 20.0);
+        createConcertEventSeats(magicShow, 800.0, 400.0, 200.0);
+
+        // Seed Artists
+        seedArtists();
     }
 
     private void createSeats(Venue venue, SeatCategory premium, SeatCategory standard) {
@@ -317,6 +320,41 @@ public class DatabaseSeeder implements CommandLineRunner {
                 es.setPrice(silverPrice);
             }
             eventSeatRepository.save(es);
+        }
+    }
+
+    private void seedArtists() {
+        List<Event> allEvents = eventRepository.findAll();
+        for (Event e : allEvents) {
+            String[] names;
+            String genericImage = "https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_placeholder.png";
+            switch (e.getName()) {
+                case "Interstellar": names = new String[]{"Matthew McConaughey", "Anne Hathaway", "Jessica Chastain", "Christopher Nolan"}; break;
+                case "Inception: IMAX Re-release": names = new String[]{"Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page", "Christopher Nolan"}; break;
+                case "Avatar: The Way of Water": names = new String[]{"Sam Worthington", "Zoe Saldana", "Sigourney Weaver", "James Cameron"}; break;
+                case "The Dark Knight": names = new String[]{"Christian Bale", "Heath Ledger", "Aaron Eckhart", "Christopher Nolan"}; break;
+                case "Dune: Part Two": names = new String[]{"Timothée Chalamet", "Zendaya", "Rebecca Ferguson", "Denis Villeneuve"}; break;
+                case "Oppenheimer": names = new String[]{"Cillian Murphy", "Emily Blunt", "Matt Damon", "Christopher Nolan"}; break;
+                case "Spider-Man: Across the Spider-Verse": names = new String[]{"Shameik Moore", "Hailee Steinfeld", "Oscar Isaac", "Joaquim Dos Santos"}; break;
+                case "John Wick: Chapter 4": names = new String[]{"Keanu Reeves", "Donnie Yen", "Bill Skarsgård", "Chad Stahelski"}; break;
+                case "The Matrix Resurrections": names = new String[]{"Keanu Reeves", "Carrie-Anne Moss", "Yahya Abdul-Mateen II", "Lana Wachowski"}; break;
+                case "Gladiator 2": names = new String[]{"Paul Mescal", "Denzel Washington", "Pedro Pascal", "Ridley Scott"}; break;
+                case "The Big Lebowski": names = new String[]{"Jeff Bridges", "John Goodman", "Julianne Moore", "Joel Coen"}; break;
+                case "Coldplay - Music of the Spheres": names = new String[]{"Chris Martin", "Jonny Buckland", "Guy Berryman", "Will Champion"}; break;
+                case "Taylor Swift - The Eras Tour": names = new String[]{"Taylor Swift", "Paramore", "Phoebe Bridgers", "HAIM"}; break;
+                case "Ed Sheeran - Mathematics Tour": names = new String[]{"Ed Sheeran", "Maisie Peters", "Dylan", "Rosa Linn"}; break;
+                default: names = new String[]{"Jane Doe", "John Smith", "Alice Johnson", "Bob Williams"}; break;
+            }
+
+            for (int i = 0; i < names.length; i++) {
+                EventArtist ea = new EventArtist();
+                ea.setName(names[i]);
+                ea.setRole(i == names.length - 1 && e.getType().equals("MOVIE") ? "Director" : (e.getType().equals("MOVIE") ? "Actor" : "Performer"));
+                ea.setImageUrl(genericImage);
+                ea.setEvent(e);
+                e.getArtists().add(ea);
+            }
+            eventRepository.save(e);
         }
     }
 }

@@ -97,8 +97,8 @@ export default function EventDetails() {
         <div className="container">
           <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem' }}>Cast & Crew</h2>
           <div style={{ display: 'flex', gap: '3rem', overflowX: 'auto', paddingBottom: '1rem' }}>
-            {[1, 2, 3, 4, 5, 6].map(i => (
-              <div key={i} style={{ textAlign: 'center', minWidth: '100px' }}>
+            {event.artists && event.artists.map(artist => (
+              <div key={artist.id} style={{ textAlign: 'center', minWidth: '100px' }}>
                 <div style={{ 
                   width: '100px', 
                   height: '100px', 
@@ -111,10 +111,14 @@ export default function EventDetails() {
                   color: '#9ca3af',
                   overflow: 'hidden'
                 }}>
-                  <svg width="40" height="40" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+                  {artist.imageUrl ? (
+                    <img src={artist.imageUrl} alt={artist.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <svg width="40" height="40" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+                  )}
                 </div>
-                <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>Artist {i}</div>
-                <div style={{ fontSize: '0.8rem', color: '#6b7280' }}>{event.type === 'MOVIE' ? 'Actor' : 'Performer'}</div>
+                <div style={{ fontSize: '0.9rem', fontWeight: '600' }}>{artist.name}</div>
+                <div style={{ fontSize: '0.8rem', color: '#6b7280' }}>{artist.role}</div>
               </div>
             ))}
           </div>

@@ -45,4 +45,7 @@ public class Event {
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private java.util.List<EventArtist> artists = new java.util.ArrayList<>();
 }
