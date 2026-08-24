@@ -5,13 +5,20 @@ import './Home.css';
 
 export default function Home() {
   const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchParams] = useSearchParams();
   const categoryFilter = searchParams.get('category');
 
   useEffect(() => {
     axios.get('https://ticketbooking-ycov.onrender.com/api/events/public')
-      .then(res => setEvents(res.data))
-      .catch(err => console.error("Failed to load events", err));
+      .then(res => {
+        setEvents(res.data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Failed to load events", err);
+        setLoading(false);
+      });
   }, []);
 
   let displayEvents = events;
@@ -26,7 +33,16 @@ export default function Home() {
 
   return (
     <div className="home-page" style={{ paddingBottom: '4rem' }}>
-      {featured && (
+      {loading && (
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh', flexDirection: 'column' }}>
+          <div className="spinner-border text-primary" role="status" style={{ width: '3rem', height: '3rem', color: 'var(--accent-color)', border: '0.25em solid currentColor', borderRightColor: 'transparent', borderRadius: '50%', animation: 'spinner-border .75s linear infinite' }}>
+          </div>
+          <p style={{ marginTop: '1.5rem', color: 'var(--text-secondary)', fontSize: '1.1rem' }}>Waking up the server...</p>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', opacity: 0.7 }}>(Render free tier servers sleep after 15 mins of inactivity. This can take up to 2 minutes.)</p>
+        </div>
+      )}
+
+      {!loading && featured && (
         <div className="hero-section" style={{ backgroundImage: `linear-gradient(to right, var(--bg-color) 10%, transparent 60%, var(--bg-color)), linear-gradient(to bottom, transparent 50%, var(--bg-color)), url(${featured.coverImageUrl})` }}>
           <div className="container hero-content">
             <span className="badge">Featured</span>
